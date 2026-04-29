@@ -2,7 +2,9 @@
 A Mathematical Infrastructure for Unified Conservative–Dissipative Systems
 
 **Author: Fumio Miyata**  
-**Date: April 2026**
+**Date: April 2026**  
+**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
 
 ---
 

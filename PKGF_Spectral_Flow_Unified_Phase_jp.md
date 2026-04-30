@@ -1,0 +1,121 @@
+# **Parallel Key Geometric Flow における統合相（Unified Phase）のスペクトル流**
+
+**著者：Fumio Miyata**  
+**日付：2026年4月**
+**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
+
+**関連文献**：*Parallel Key Geometric Flow (PKGF): A Mathematical Infrastructure for Unified Conservative–Dissipative Systems*
+
+---
+
+## **要旨（Abstract）**
+
+本稿では、Parallel Key Geometric Flow（PKGF）における統合相（Unified Phase）の作用素進化に付随して現れる **スペクトル流（spectral flow）** の挙動を検討する。PKGF は、交換子型の保存的成分と楕円型作用素により生成される散逸的成分を複素化によって統合する枠組みである。このとき得られる時間依存作用素族を、固定された楕円型作用素の摂動として実現すると、古典的な自己共役 Fredholm 作用素に対するスペクトル流理論の枠組みに自然に収まる。
+
+本研究の目的は、スペクトル流理論に新たな結果を加えることではなく、  
+(i) PKGF によって生成される作用素族が古典的スペクトル流の定義とどのように関係するか、  
+(ii) スペクトル流が良定義となるための解析的条件（Fredholm 性、ノルム resolvent 連続性、横断性）、  
+(iii) 保存的成分と散逸的成分が固有値の運動に果たす質的役割、  
+を明確化することである。
+
+本稿の結果は PKGF の補助的技術資料として位置づけられ、PKGF の統合的ダイナミクスと古典的楕円型作用素論との橋渡しを意図している。
+
+---
+
+## **1. 序論（Introduction）**
+
+Parallel Key Geometric Flow（PKGF）は、交換子作用 \([\Omega, K]\) による保存的成分と、楕円型作用素 \(\mathcal{D}\) による散逸的成分を、複素化  
+\[
+\widetilde{K} = K_{\mathrm{core}} + i K_{\mathrm{fluct}}
+\]
+によって統合する線形進化方程式を定める。
+
+この統合された進化は、時間依存の作用素族 \(\widetilde{K}(t)\) を生成する。これを固定された自己共役楕円型作用素 \(\mathcal{L}_0\) の 0 次摂動として用いると、
+\[
+\mathcal{L}(t) = \mathcal{L}_0 + \widetilde{K}(t)
+\]
+という作用素族が得られる。本稿の目的は、この作用素族が古典的スペクトル流理論とどのように関係するかを明確化することである。
+
+本稿はスペクトル流理論に新規の結果を主張するものではなく、PKGF の文脈における既存理論の適切な適用に焦点を置く。
+
+---
+
+## **2. 数学的設定と仮定（Mathematical Setting and Assumptions）**
+
+本稿では、PKGF 基礎論文で導入された構造的公理（A1–A6）および解析的仮定（H‑mD, H‑dom, H‑reg, H‑Fred, SF‑Op）を採用する。
+
+- \(M\)：コンパクト Riemann 多様体  
+- \(E \to M\)：有限階数ベクトル束  
+- \(\widetilde{K}(t) \in \Gamma(\mathrm{End}(E))\)：統合作用素  
+- \(\mathcal{L}_0\)：自己共役楕円型 Fredholm 作用素  
+- \(\mathcal{L}(t) = \mathcal{L}_0 + \widetilde{K}(t)\)：その摂動
+
+仮定：
+
+- **H-Fred**：\(\mathcal{L}(t)\) は全ての \(t\) で Fredholm  
+- **SF-Op**：\(\mathcal{L}(t)\) はノルム resolvent 連続  
+- **横断性（Transversality）**：単純固有値の交差時に \(\dot{\lambda}_j(t_c) \neq 0\)
+
+これらはスペクトル流の標準的仮定である（Phillips 1996; Waterstraat 2016; Bär–Ziemke 2025）。
+
+---
+
+## **3. PKGF による作用素族のスペクトル流（Spectral Flow for PKGF Operator Families）**
+
+上記の仮定の下で、スペクトル流
+\[
+\mathrm{SF}(\mathcal{L}(t)) \in \mathbb{Z}
+\]
+は古典的意味で良定義となる。PKGF の進化はスペクトル流の定義や性質を変更するものではなく、単にスペクトル流理論を適用できる特定の時間依存摂動を提供するにすぎない。
+
+---
+
+## **4. 固有値のダイナミクス（Eigenvalue Dynamics）**
+
+\(\mathcal{L}(t)\) の単純固有値 \(\lambda_j(t)\) と正規化固有ベクトル \(u_j(t)\) に対して、十分な正則性の下で Hellmann–Feynman 型の公式が成立する：
+
+\[
+\dot{\lambda}_j(t) = \langle \dot{\mathcal{L}}(t) u_j(t), u_j(t) \rangle.
+\]
+
+ここで
+\[
+\dot{\mathcal{L}}(t) = [\Omega, \widetilde{K}(t)] + \lambda\, \mathcal{D}(\widetilde{K}(t)).
+\]
+
+したがって、保存的成分と散逸的成分の両方が固有値の運動に寄与しうる。一般に、散逸項は固有値の実方向の変化を引き起こしやすく、保存項は回転的（虚部的）効果をもたらすことが多いが、無限次元における精密な分解にはより慎重な摂動論が必要である。
+
+---
+
+## **5. 主命題（Main Proposition）**
+
+### **命題（PKGF によって生成される作用素族のスペクトル流）**  
+仮定 H‑Fred, SF‑Op, および横断性条件 \(\dot{\lambda}_j(t_c) \neq 0\) が単純交差時に成立するならば、スペクトル流は古典的公式
+\[
+\mathrm{SF}(\mathcal{L}(t)) = \sum_{t_c} \operatorname{sign}(\dot{\lambda}_j(t_c))
+\]
+によって与えられる。
+
+これは PKGF によって生成される作用素族に対して、標準的スペクトル流理論を直接適用した結果である。
+
+### **備考**  
+本命題は、PKGF の文脈においてスペクトル流がどのように良定義となるかを明確化するためのものであり、スペクトル流理論そのものに新規性を主張するものではない。
+
+---
+
+## **6. 議論（Discussion）**
+
+PKGF の統合相は、楕円型作用素の時間依存摂動として自然に扱える作用素族を生成する。これは新しいスペクトル流現象を導入するものではないが、保存的（対称性保持）成分と散逸的（エネルギー減衰）成分が共存する構造化された状況を提供し、横断性が成立する場合には固有値のゼロ交差を引き起こしうる。
+
+無限次元における両成分の相互作用は非自明であり、より精密な摂動論的解析が必要である。
+
+---
+
+## **7. 結論（Conclusion）**
+
+本稿では、Parallel Key Geometric Flow の統合相に対して古典的スペクトル流理論がどのように適用されるかを技術的に整理した。スペクトル流が良定義となるための解析的条件を明確化し、PKGF のダイナミクスと既存の作用素論との関係を示すことで、PKGF と古典的楕円型作用素論との橋渡しを行った。
+
+今後の課題として、退化交差の解析や、無限次元におけるより精緻な摂動論の構築が挙げられる。
+
+---

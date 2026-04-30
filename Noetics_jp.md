@@ -3,7 +3,9 @@
 
 **著者：** Fumio Miyata  
 **日付：** 2026年4月  
-**所属：** Independent Research Institute for the Physics of Intelligence  
+**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
+
 **基礎文献：**  
 - *Physics of Intelligence: Substrate-Invariant Formalism and Verification of PKGF*  
 - *Parallel Key Geometric Flow: A Mathematical Infrastructure for Unified Conservative–Dissipative Systems*

@@ -3,7 +3,8 @@
 
 **Author:** Fumio Miyata  
 **Date:** April 2026  
-**Affiliation:** Independent Research Institute for the Physics of Intelligence  
+**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
 
 ---
 

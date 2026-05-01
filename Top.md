@@ -7,6 +7,23 @@
 * **PoI** is the first scientific framework that describes intelligence as **geometric dynamics on a manifold**.
 * **PoI theory** is defined by the **PKGF axioms**, the **action principle**, and the **CDU cycle** — a unified theory of intelligence.
 
+## Research Directory Index
+
+### 📜 Core Foundations
+* **[Noetics Founding Declaration](Noetics_en.md)** — Establishing intelligence as a physical science.
+* **[PoI Theory Dissertation](PoI_Theory_en.md)** — Consolidated final theory and verification.
+* **[PKGF Mathematical Engine](Parallel_Key_Geometric_Flow_en.md)** — The PDE and operator-theoretic backbone.
+
+### 🔬 Specialized Extensions
+* **[Spectral Flow in Unified Phase](PKGF_Spectral_Flow_Unified_Phase_en.md)** — Topological transitions and eigenvalue dynamics.
+* **[Nonlinear Extensions](PKGF_Nonlinear_Extensions_en.md)** — Stability and long-time behavior under nonlinear perturbations.
+* **[Modern Physics Correspondences](PKGF_structural_correspondence_modern_physics_en.md)** — Bridging PKGF with GENERIC, Onsager, and Gauge theories.
+* **[Numerical Analysis (Galerkin)](PKGF_Finite_Dimensional_en.md)** — Finite-dimensional stability and discrete dynamics.
+* **[Comparison with GENERIC/Onsager](PKGF_Generic_Onsager_en.md)** — Energy structure and non-equilibrium analysis.
+
+### 📚 Resources
+* **[PDF Bibliography](PDF_Bibliography.md)** — Central index of technical source materials.
+
 ---
 
 ## What PoI Solves

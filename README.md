@@ -1,6 +1,6 @@
 # Physics of Intelligence (PoI) & Parallel Key Geometric Flow (PKGF)
 
-**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)  
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 This repository contains the foundational manuscripts, mathematical proofs, and empirical verification results for the **Physics of Intelligence (PoI)** framework and its core mathematical engine, the **Parallel Key Geometric Flow (PKGF)**.
@@ -31,11 +31,20 @@ Our research demonstrates that intelligence is a **substrate-invariant** phenome
 
 ## 📂 Repository Structure
 
--   [`PoI_Theory_en.md`](PoI_Theory_en.md): The consolidated final dissertation (English).
--   [`PoI_Theory_jp.md`](PoI_Theory_jp.md): The consolidated final dissertation (Japanese).
--   [`Parallel_Key_Geometric_Flow_en.md`](Parallel_Key_Geometric_Flow_en.md): Technical deep-dive into the PKGF mathematical engine (English).
--   [`Parallel_Key_Geometric_Flow_jp.md`](Parallel_Key_Geometric_Flow_jp.md): Technical deep-dive into the PKGF mathematical engine (Japanese).
--   [`Top.md`](Top.md): Executive summary and navigation guide.
+### 📜 Core Manuscripts
+- [`PoI_Theory_en.md`](PoI_Theory_en.md) / [`jp`](PoI_Theory_jp.md): The consolidated final dissertation on the Physics of Intelligence.
+- [`Parallel_Key_Geometric_Flow_en.md`](Parallel_Key_Geometric_Flow_en.md) / [`jp`](Parallel_Key_Geometric_Flow_jp.md): Technical deep-dive into the PKGF mathematical engine.
+- [`Noetics_en.md`](Noetics_en.md) / [`jp`](Noetics_jp.md): The founding declaration of Noetics as a physical science.
+
+### 🔬 Specialized Research Papers
+- [`PKGF_Spectral_Flow_Unified_Phase_en.md`](PKGF_Spectral_Flow_Unified_Phase_en.md) / [`jp`](PKGF_Spectral_Flow_Unified_Phase_jp.md): Eigenvalue dynamics and topological transitions in the unified phase.
+- [`PKGF_Nonlinear_Extensions_en.md`](PKGF_Nonlinear_Extensions_en.md) / [`jp`](PKGF_Nonlinear_Extensions_jp.md): Analysis of nonlinear operator-theoretic stability and attractor existence.
+- [`PKGF_structural_correspondence_modern_physics_en.md`](PKGF_structural_correspondence_modern_physics_en.md) / [`jp`](PKGF_structural_correspondence_modern_physics_jp.md): Formal mapping of PKGF to GENERIC, Onsager, Heisenberg, and Gauge theories.
+- [`PKGF_Finite_Dimensional_en.md`](PKGF_Finite_Dimensional_en.md) / [`jp`](PKGF_Finite_Dimensional_jp.md): Numerical analysis and stability of Galerkin discretizations for PKGF.
+- [`PKGF_Generic_Onsager_en.md`](PKGF_Generic_Onsager_en.md) / [`jp`](PKGF_Generic_Onsager_jp.md): Comparison of PKGF energy structures with non-equilibrium thermodynamic frameworks.
+
+### 📚 Bibliography & References
+- [`PDF_Bibliography.md`](PDF_Bibliography.md): Central index of technical - [`Top.md`](Top.md): Executive summary and navigation guide.
 
 ## 🧬 Mathematical Implementation
 
@@ -58,7 +67,7 @@ If you use this theory or the associated data in your research, please cite it a
   month        = {April},
   note         = {Consolidated Final Edition},
   doi          = {10.5281/zenodo.19659376},
-  url          = {https://doi.org/10.5281/zenodo.19876955}
+  url          = {https://doi.org/10.5281/zenodo.19945121}
 }
 ```
 

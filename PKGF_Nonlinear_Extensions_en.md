@@ -3,7 +3,7 @@ Well-posedness, Energy Structure, and Operator-Theoretic Stability**
 
 **Author: Fumio Miyata**  
 **Date: April 2026**  
-**DOI:** [https://doi.org/10.5281/zenodo.19876955](https://doi.org/10.5281/zenodo.19876955)  
+**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)  
 **Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
 
 **Related Work:**  

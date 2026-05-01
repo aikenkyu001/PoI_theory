@@ -220,3 +220,7 @@ __marimo__/
 PDF/
 Scripts/extract_pdf_text.py
 .DS_Store
+*.mod
+*.o
+SDK/C/test_noetics
+SDK/Fortran/test_noetics

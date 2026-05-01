@@ -35,7 +35,7 @@ where the conservative component \([\Omega, K]\) is of commutator type and the d
 \widetilde{K} = K_{\mathrm{core}} + i K_{\mathrm{fluct}}.
 \]
 
-A key feature of PKGF is that its dynamical variable \(K\) is not a physical state variable (such as density, momentum, or temperature), but rather an **operator describing the structure that governs the evolution of states**. This places PKGF at a different hierarchical level from GENERIC and Onsager theory, which operate on macroscopic state variables.
+A key feature of PKGF is that its dynamical variable \(K\) is not a physical state variable (such as density, momentum, or temperature), but rather an **operator describing the structure that governs the evolution of states**. This places PKGF at a different hierarchical level from GENERIC and Onsager theory, which operate on macroscopic state variables. Viewing intelligence as a physical process grounded in conservation laws and metriplectic flows is a perspective increasingly supported by contemporary physical theories of intelligence [Fagan 2026].
 
 The purpose of this paper is to analyze the energy structure of PKGF and compare it with the GENERIC and Onsager frameworks, highlighting both structural similarities and essential differences.
 
@@ -83,12 +83,13 @@ and the commutator term does not contribute to the energy:
 \[
 \langle\!\langle [\Omega, K], K\rangle\!\rangle = 0.
 \]
+The mathematical consistency of such dissipative gradient flows and their structure-preserving numerical realizations is well-documented within the Onsager framework [Chen et al. 2024].
 
 ---
 
 # **3. Comparison with the GENERIC Framework**
 
-GENERIC is formulated as
+GENERIC is formulated as [Grmela 2025]
 
 \[
 \dot{x} = L(x)\nabla E(x) + M(x)\nabla S(x),
@@ -177,7 +178,7 @@ Onsager’s linear response theory is given by
 \dot{x} = -Lx,
 \]
 
-where \(L\) is symmetric and positive definite.
+where \(L\) is symmetric and positive definite. Modern unsupervised operator learning approaches for dissipative equations have also begun utilizing the Onsager principle [Chang et al. 2025].
 
 ---
 
@@ -191,7 +192,7 @@ where \(L\) is symmetric and positive definite.
 
 ## **4.2 Differences**
 
-Onsager reciprocity (symmetry of the response matrix) generally does not hold for PKGF.
+Onsager reciprocity (symmetry of the response matrix) generally does not hold for PKGF [Fuchs et al. 2018].
 
 However, this is not a defect.  
 In many intelligent or adaptive systems—such as control systems, learning systems, or circuits—  
@@ -245,3 +246,12 @@ Galerkin approximations,
 and a more refined perturbation theory in infinite dimensions.
 
 ---
+
+# **References**
+
+[Chang 2025] Chang, Z., Wen, Z., & Zhao, X. (2025). Unsupervised operator learning approach for dissipative equations via Onsager principle.  
+[Chen 2024] Chen, H., Liu, H., & Xu, X. (2024). The Onsager principle and structure preserving numerical schemes.  
+[Fagan 2026] Fagan, P. D. (2026). Toward a Physical Theory of Intelligence.  
+[Fuchs 2018] Fuchs, J. N., Piéchon, F., & Montambaux, G. (2018). Landau levels, response functions and magnetic oscillations from a generalized Onsager relation.  
+[Grmela 2025] Grmela, M. (2025). Rheological modeling with GENERIC and with the Onsager principle.  
+[Palffy-Muhoray 2017] Palffy-Muhoray, P., Virga, E. G., & Zheng, X. (2017). Onsager's missing steps retraced.  

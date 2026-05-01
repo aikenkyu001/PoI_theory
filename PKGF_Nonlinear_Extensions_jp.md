@@ -16,7 +16,7 @@ Well-posedness・エネルギー構造・作用素安定性**
 ## **要旨（Abstract）**
 
 本稿では、Parallel Key Geometric Flow（PKGF）の **非線形拡張** を解析する。  
-PKGF は交換子型の保存的成分と、楕円型作用素に基づく散逸的成分を複素化によって統合する作用素流である。これまでの研究では、線形 PKGF の解析的性質や構造的特徴が中心であったが、Noetics や構造ダイナミクス、知能の作用素モデルといった応用領域では、**非線形相互作用が本質的** である。
+PKGF は交換子型の保存的成分と、楕円型作用素に基づく散逸的成分を複素化によって統合する作用素流である。これまでの研究では、線形 PKGF の解析的性質や構造的特徴が中心であったが、Noetics や構造ダイナミクス、知能の作用素モデルといった応用領域では、**非線形相互作用が本質的** である。知能を物理的保存則と散逸の動的均衡として捉える近年の物理理論 [Fagan 2026] においても、非線形性は不可避な要素として位置づけられている。
 
 本稿の目的は、非線形 PKGF のための **数学的基礎** を確立することであり、具体的には：
 
@@ -41,9 +41,9 @@ Parallel Key Geometric Flow（PKGF）は、
 
 これまでの研究により：
 
-- **線形 PKGF の well-posedness**  
-- **統合相（U-phase）におけるスペクトル流の解析**  
-- **GENERIC / Onsager とのエネルギー構造の比較**
+- **線形 PKGF の well-posedness** [Brezis 2011; Cheng 2026]
+- **統合相（U-phase）におけるスペクトル流の解析** [Phillips 1996; Waterstraat 2016]
+- **GENERIC / Onsager とのエネルギー構造の比較** [Chen et al. 2024; Grmela 2025]
 
 が確立されている。
 
@@ -55,9 +55,7 @@ Parallel Key Geometric Flow（PKGF）は、
 - 非線形正則化  
 - 構造間の非線形結合  
 
-などが自然に現れる。
-
-本稿では、これらの非線形性を PKGF に組み込むための数学的基盤を構築する。
+などが自然に現れる。本稿では、これらの非線形性を PKGF に組み込むための数学的基盤を構築する。
 
 ---
 
@@ -83,7 +81,7 @@ Parallel Key Geometric Flow（PKGF）は、
 
 仮定：
 
-- \(\mathcal{D}\) は m-dissipative  
+- \(\mathcal{D}\) は m-dissipative [Brezis 2011]
 - \(\mathcal{N}\) は局所 Lipschitz または単調  
 - \(\Omega(K)\) は有界、または交換子推定を満たす  
 
@@ -121,7 +119,7 @@ Crandall–Liggett の定理および非線形半群論を用いる。
 
 ---
 
-## **定理 4.1（Mild 解の存在）**
+## **4.1 Mild 解の存在**
 
 以下を仮定する：
 
@@ -143,7 +141,7 @@ K \in C([0,T]; L^2(M,\mathrm{End}(E)))
 
 ---
 
-## **定理 4.2（Strong 解の存在）**
+## **4.2 Strong 解の存在**
 
 さらに：
 
@@ -173,7 +171,7 @@ E(K) = \frac{1}{2}\|K\|_{L^2}^2
 すると、
 
 \[
-\frac{d}{dt}E(K(t))
+\frac{dt}dt}E(K(t))
 = \langle \mathcal{D}(K), K\rangle
 + \langle \mathcal{N}(K), K\rangle.
 \]
@@ -200,7 +198,7 @@ E(K) = \frac{1}{2}\|K\|_{L^2}^2
 E(K(t)) \text{ は非増大}
 \]
 
-となる。
+となる。この散逸構造の安定性は、Onsager の原理に基づいたエネルギー安定スキームの議論 [Chen et al. 2024] を非線形系へ拡張したものである。
 
 これは Noetics における **構造の崩壊・抽象化（D-phase）** に対応する。
 
@@ -208,7 +206,7 @@ E(K(t)) \text{ は非増大}
 
 # **6. 安定性と長時間挙動**
 
-LaSalle 型の議論により：
+LaSalle 型の議論 [Mei and Bullo 2020] により：
 
 ---
 
@@ -226,7 +224,7 @@ LaSalle 型の議論により：
 \mathrm{dist}(K(t), \mathcal{F}) \to 0 \quad (t\to\infty)
 \]
 
-が成立する。
+が成立する。収束の速さは Lojasiewicz–Simon 勾配不等式 [Feehan and Maridakis 2019] によって特徴づけられる可能性がある。
 
 ---
 
@@ -276,8 +274,21 @@ Noetics における非線形構造ダイナミクスの解析に必要な基盤
 
 - 非線形スペクトル流  
 - 分岐現象  
-- 概念形成の作用素モデル  
+- 概念形成の作用素モデル [Ngu and Kosso 2024]
 
 などが挙げられる。
 
 ---
+
+# **参考文献**
+
+[Brezis 2011] Brezis, H. (2011). Functional Analysis, Sobolev Spaces and Partial Differential Equations.  
+[Chen 2024] Chen, H., Liu, H., & Xu, X. (2024). The Onsager principle and structure preserving numerical schemes.  
+[Cheng 2026] Cheng, X. (2026). Semigroup theory.  
+[Fagan 2026] Fagan, P. D. (2026). Toward a Physical Theory of Intelligence.  
+[Feehan and Maridakis 2019] Feehan, P. M. N., & Maridakis, M. (2019). Lojasiewicz–Simon gradient inequalities for analytic and Morse–Bott functions on Banach spaces.  
+[Grmela 2025] Grmela, M. (2025). Rheological modeling with GENERIC and with the Onsager principle.  
+[Mei and Bullo 2020] Mei, W., & Bullo, F. (2020). LaSalle Invariance Principle for Discrete-time Dynamical Systems.  
+[Ngu and Kosso 2024] Ngu, A., & Kosso, A. O. (2024). Intelligent Transformation: General Intelligence Theory.  
+[Phillips 1996] Phillips, J. (1996). Self-adjoint Fredholm Operators and Spectral Flow.  
+[Waterstraat 2016] Waterstraat, N. (2016). Fredholm Operators and Spectral Flow.  

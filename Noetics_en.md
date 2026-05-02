@@ -63,6 +63,43 @@ PoI provides the *physical laws* of intelligence.
 PKGF provides the *mathematical realization* of those laws.  
 Together, they constitute the foundation of Noetics.
 
+```mermaid
+graph TD
+
+    %% Layer 1: Noetics
+    N["Noetics\nFoundational Science of Intelligence"]
+
+    %% Layer 2: Two Pillars
+    PoI["PoI\nPhysics of Intelligence\n(Physical Laws)"]
+    PKGF["PKGF\nParallel Key Geometric Flow\n(Mathematical Infrastructure)"]
+
+    N --> PoI
+    N --> PKGF
+
+    %% Layer 3: CDU Cycle
+    C["Construction\n(Structure Formation)"]
+    D["Divergence\n(Dissipation / Collapse)"]
+    U["Unification\n(Phase Transition / Emergence)"]
+
+    PoI --> C
+    PoI --> D
+    PoI --> U
+
+    %% Layer 4: PKGF Components
+    CPKGF["Positive PKGF\n(Conservative Flow)"]
+    DPKGF["Inverse PKGF\n(Dissipative Flow)"]
+    UPKGF["Unified PKGF\n(Complex Flow + Spectral Flow)"]
+
+    PKGF --> CPKGF
+    PKGF --> DPKGF
+    PKGF --> UPKGF
+
+    %% Cross-links
+    C --- CPKGF
+    D --- DPKGF
+    U --- UPKGF
+```
+
 ---
 
 # **3. Scientific Mission of Noetics**

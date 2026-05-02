@@ -1,5 +1,5 @@
-# **非線形 Parallel Key Geometric Flow の数学的基礎：  
-Well-posedness・エネルギー構造・作用素安定性**
+# 非線形 Parallel Key Geometric Flow の数学的基礎：  
+**Well-posedness・エネルギー構造・作用素安定性**
 
 **著者：Fumio Miyata**  
 **日付：2026年4月**
@@ -170,11 +170,7 @@ E(K) = \frac{1}{2}\|K\|_{L^2}^2
 
 すると、
 
-\[
-\frac{dt}dt}E(K(t))
-= \langle \mathcal{D}(K), K\rangle
-+ \langle \mathcal{N}(K), K\rangle.
-\]
+\[\frac{d}{dt} E(K(t)) = \langle \mathcal{D}(K), K \rangle + \langle \mathcal{N}(K), K \rangle.\]
 
 交換子項はエネルギーに寄与しない：
 

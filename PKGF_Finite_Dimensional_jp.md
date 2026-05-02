@@ -1,5 +1,5 @@
-# **Parallel Key Geometric Flow の有限次元近似と数値解析：  
-Galerkin 法による統合相ダイナミクスの離散化と安定性**
+# Parallel Key Geometric Flow の有限次元近似と数値解析：  
+**Galerkin 法による統合相ダイナミクスの離散化と安定性**
 
 **著者：Fumio Miyata**  
 **日付：2026年4月**
@@ -112,9 +112,7 @@ P_n : H \to H_n
 の Galerkin 近似は：
 
 \[
-\partial_t K_n
-= P_n([\Omega, K_n])
-+ \lambda P_n(\mathcal{D}(K_n)).
+\partial_t K_n = P_n([\Omega, K_n]) + \lambda P_n(\mathcal{D}(K_n)).
 \]
 
 非線形 PKGF：
@@ -125,11 +123,8 @@ P_n : H \to H_n
 
 の Galerkin 近似は：
 
-\[
-\partial_t K_n
-= P_n([\Omega_n(K_n), K_n])
-+ \lambda P_n(\mathcal{D}(K_n))
-+ P_n(\mathcal{N}(K_n)).
+\[0
+\partial_t K_n = P_n([\Omega_n(K_n), K_n]) + \lambda P_n(\mathcal{D}(K_n)) + P_n(\mathcal{N}(K_n)).
 \]
 
 ---
@@ -186,7 +181,7 @@ K_n \to K \quad \text{in } C([0,T]; L^2)
 離散エネルギーを
 
 \[
-E_n(K_n) = \frac{1}{2}}\|K_n\|_{L^2}^2
+E_n(K_n) = \frac{1}{2}\|K_n\|_{L^2}^2
 \]
 
 と定義する。

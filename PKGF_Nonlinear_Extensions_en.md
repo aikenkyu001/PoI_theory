@@ -1,5 +1,5 @@
-# **Nonlinear Extensions of the Parallel Key Geometric Flow:  
-Well-posedness, Energy Structure, and Operator-Theoretic Stability**
+# Nonlinear Extensions of the Parallel Key Geometric Flow:  
+**Well-posedness, Energy Structure, and Operator-Theoretic Stability**
 
 **Author: Fumio Miyata**  
 **Date: April 2026**  
@@ -144,11 +144,10 @@ E(K) = \frac{1}{2}\|K\|_{L^2}^2.
 
 Then:
 
+
+
 \[
-\frac{d}{dt}E(K(t))
-= \langle \mathcal{D}(K), K\rangle
-+ \langle \mathcal{N}(K), K\rangle.
-\]
+\frac{d}{dt} E(K(t)) = \langle\mathcal{D}(K), K \rangle + \langle \mathcal{N}(K), K \rangle.\]
 
 The commutator term vanishes:
 

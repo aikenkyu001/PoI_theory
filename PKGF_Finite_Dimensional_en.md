@@ -1,5 +1,5 @@
-# **Finite-Dimensional Approximations and Numerical Analysis of the Parallel Key Geometric Flow:  
-Galerkin Discretization and Stability of Unified-Phase Dynamics**
+# Finite-Dimensional Approximations and Numerical Analysis of the Parallel Key Geometric Flow:  
+**Galerkin Discretization and Stability of Unified-Phase Dynamics**
 
 **Author: Fumio Miyata**  
 **Date: April 2026**  
@@ -107,29 +107,15 @@ For the linear PKGF:
 
 the Galerkin approximation is:
 
-\[
-\partial_t K_n
-= P_n([\Omega, K_n])
-+ \lambda P_n(\mathcal{D}(K_n)).
-\]
+\[\partial_t K_n = P_n([\Omega, K_n]) + \lambda P_n(\mathcal{D}(K_n)).\]
 
 For the nonlinear PKGF:
 
-\[
-\partial_t K
-= [\Omega(K), K]
-+ \lambda \mathcal{D}(K)
-+ \mathcal{N}(K),
-\]
+\[\partial_t K = [\Omega(K), K] + \lambda \mathcal{D}(K) + \mathcal{N}(K),\]
 
 the discrete system becomes:
 
-\[
-\partial_t K_n
-= P_n([\Omega_n(K_n), K_n])
-+ \lambda P_n(\mathcal{D}(K_n))
-+ P_n(\mathcal{N}(K_n)).
-\]
+\[\partial_t K_n = P_n([\Omega_n(K_n), K_n]) + \lambda P_n(\mathcal{D}(K_n)) + P_n(\mathcal{N}(K_n)).\]
 
 ---
 

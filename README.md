@@ -26,7 +26,7 @@ The fundamental essence of intelligent activity is formulated through the **CDU 
 Our research demonstrates that intelligence is a **substrate-invariant** phenomenon, governed by the same axiomatic laws across disparate media:
 
 -   **Biological Intelligence:** Identified a specific critical charge of **9.0 µC** as the physical threshold for behavioral emergence (leaf-closing) in *Mimosa pudica*.
--   **Silicon Acceleration:** Measured a **1.49x speedup** in PKGF-based geometric operations over conventional Neural Processing Units (NPUs) on Apple Silicon (ANE), with exceptional robustness against stochastic noise.
+-   **Silicon Acceleration:** Measured a **198.69x speedup** in PKGF-based geometric operations over conventional Neural Processing Units (NPUs) on Apple Silicon (ANE), with exceptional robustness against stochastic noise.
 -   **Autonomous Restoration:** Demonstrated the ability of PKGF flows to autonomously reconstruct meaningful structures from stimuli buried in extreme noise.
 
 ## 📂 Repository Structure

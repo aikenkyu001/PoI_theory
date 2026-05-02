@@ -72,6 +72,38 @@ PoI が「知能の物理法則」を与え、
 PKGF が「その数学的実体」を与える。  
 この二つの理論の統合こそが、ノエティクスの基礎である。
 
+```mermaid
+graph TD
+
+    N[ノエティクス（Noetics）<br>知能の基礎科学]
+
+    PoI[PoI<br>知能の物理法則]
+    PKGF[PKGF<br>幾何学的・解析的インフラ]
+
+    N --> PoI
+    N --> PKGF
+
+    C[構築（C）<br>構造の形成]
+    D[解体（D）<br>散逸・抽象化]
+    U[統合（U）<br>相転移・創発]
+
+    PoI --> C
+    PoI --> D
+    PoI --> U
+
+    CPKGF[正PKGF<br>保存的流]
+    DPKGF[逆PKGF<br>散逸的流]
+    UPKGF[統一PKGF<br>複素流＋スペクトル流]
+
+    PKGF --> CPKGF
+    PKGF --> DPKGF
+    PKGF --> UPKGF
+
+    C --- CPKGF
+    D --- DPKGF
+    U --- UPKGF
+```
+
 ---
 
 # **3. ノエティクスの学問的使命**

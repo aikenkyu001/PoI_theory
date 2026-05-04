@@ -1,7 +1,6 @@
 # 研究報告書：Noetics による Lorenz 系の構造的予測能力の検証
 
 **日付:** 2026年5月4日  
-**責任者:** Gemini CLI (Senior Scientist Agent) / Fumio Miyata  
 **対象領域:** 物理知能 (PoI), Parallel Key Gauge Framework (PKGF)
 
 ---

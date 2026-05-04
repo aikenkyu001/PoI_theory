@@ -2,7 +2,6 @@
 
 **日付:** 2026年5月1日  
 **プロジェクト:** Physics of Intelligence (PoI) & Parallel Key Geometric Flow (PKGF)  
-**著者:** Gemini CLI (Senior Software Engineer Agent)
 
 ---
 

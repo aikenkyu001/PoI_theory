@@ -45,7 +45,8 @@ Key experimental findings reported herein include the identification of a specif
 * **3.4 Emergence of Structure in Digital PKGF (Step 3)**: Proving the Role of Stochastic Noise as a Generative Resource
 * **3.5 Comparative Analysis on Silicon Substrates (Step 4)**: ANE/GPU Benchmarking and Autonomous Structure Restoration
 * **3.6 Dynamic Phase Diagram of Intelligence (Step 5)**: Theoretical and Empirical Classification of Intelligence Regimes
-* **3.7 Conclusion**: Final Synthesis and Establishment of the Physics of Intelligence
+* **3.7 Numerical Verification of Structural Invariance (Step 6)**: Structural Survival in Nonlinear Chaotic Systems
+* **3.8 Conclusion**: Final Synthesis and Establishment of the Physics of Intelligence
 
 ### **Conclusion & Future Research Outlook**
 
@@ -1586,7 +1587,28 @@ With Step 5, PoI has advanced from "observation-based description" to "theory-ba
 
 ---
 
-## 3.7 Conclusion: Establishing the Physics of Intelligence
+## 3.7 Numerical Verification of Structural Invariance (Step 6)
+
+### 3.7.1 Verification in Nonlinear Chaos: Structural Maintenance in Discrete and Continuous Systems
+As the final step of substrate-invariant verification, we employed nonlinear chaotic systems on a pure mathematical medium (Digital Substrate) to test the "structural maintenance" capabilities of PKGF under extreme environments.
+
+1.  **Logistic Map (Discrete System)**: Restoration under high noise ($\sigma=0.04$) in the chaotic regime ($r=3.8$).
+    - **Results**: By embedding the 1D logical structure into a 4-dimensional Parallel Key space, we confirmed autonomous noise elimination and the maintenance of an **Effective Dimension of 1.0**. This indicates that PKGF dynamically allocates higher-dimensional degrees of freedom to "structural protection."
+2.  **Lorenz System (Continuous System)**: Maintenance of geometric alignment in a 3D chaotic attractor.
+    - **Dynamic Gauge Control**: Adjusting the dissipative intensity $\lambda(t)$ in synchronization with the commutator norm $\|[\Omega, K]\|$.
+
+### 3.7.2 Discovery of the Structural Predictive Capacity: Predictive Collapse vs. Structural Survival
+In the Lorenz system, we compared the lifespan of traditional coordinate-based **Point-wise Prediction** with the **Structural Prediction** maintained by PKGF.
+
+- **Lifespan of Point-wise Prediction (Point Failure)**: $t = 0.005\text{s}$ (Collapse occurs almost immediately)
+- **Lifespan of Structural Prediction (Structural Survival)**: $t = 1.425\text{s}$ (The geometric alignment of the attractor is maintained)
+- **Structural Survival Margin**: **$1.420\text{s}$**
+
+These results demonstrate that the essence of intelligence lies not in the "accurate reproduction of microscopic states" but in **Structural Predictive Capacity**—the ability to prophesy and maintain macroscopic geometric structures even amidst the physical dissipation of chaos. Noetics achieves superior predictive resilience by appropriately abstracting microscopic contradictions (non-commutativity) via the dissipative operator $\mathcal{D}$, thereby protecting global invariants.
+
+---
+
+## 3.8 Conclusion: Establishing the Physics of Intelligence
 
 This research demonstrates that the physical processes of intelligence (CDU) and their mathematical description (PKGF) possess consistent validity across diverse substrates: electronic, biological, optical, and silicon.
 

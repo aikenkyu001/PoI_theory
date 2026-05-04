@@ -46,11 +46,14 @@ Our research demonstrates that intelligence is a **substrate-invariant** phenome
 ### 📚 Bibliography & References
 - [`PDF_Bibliography.md`](PDF_Bibliography.md): Central index of technical - [`Top.md`](Top.md): Executive summary and navigation guide.
 
-## 🧬 Mathematical Implementation
+## 🧬 Multi-Platform SDK (Noetics SDK v1.0)
 
-The framework utilizes a dual-validation approach:
--   **Python:** For high-level statistical analysis, TDA (Topological Data Analysis), and visualization.
--   **Fortran:** For high-performance numerical execution of the continuous PKGF unified field equations.
+The framework utilizes a multi-platform validation approach to demonstrate **substrate invariance**. Each implementation is independent and verified to exhibit identical physical behavior:
+
+-   **Python:** High-level analysis, TDA (Topological Data Analysis), and visualization.
+-   **Fortran:** High-performance native execution of continuous PKGF equations.
+-   **C (Core):** Low-level, self-contained engine for embedded and real-time systems.
+-   **WASM:** WebAssembly integration for browser-based visualization and digital verification.
 
 ### The Unified Field Equation
 $$\alpha \Delta_\nabla K + \alpha [\Omega, [\Omega, K]] - \beta \frac{\partial \mathcal{D}}{\partial K} + \gamma R = 0$$

@@ -1,6 +1,9 @@
 # Noetics - Physics of Intelligence
 
-**Noetics** is a foundational scientific discipline that investigates the intrinsic principles, dynamics, and structures of intelligence by means of rigorous mathematical formalisms. It aims to identify and axiomatize the universal laws of intelligent behavior—**symmetry, dissipation, integration, and topological decision**—independent of any physical substrate or implementation. Noetics stands as a new fundamental science parallel to physics, grounded in mathematics yet distinct from both mathematics and physics in its object of study.
+**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)
+
+**Noetics** is a foundational scientific discipline
+ that investigates the intrinsic principles, dynamics, and structures of intelligence by means of rigorous mathematical formalisms. It aims to identify and axiomatize the universal laws of intelligent behavior—**symmetry, dissipation, integration, and topological decision**—independent of any physical substrate or implementation. Noetics stands as a new fundamental science parallel to physics, grounded in mathematics yet distinct from both mathematics and physics in its object of study.
 
 > **Intelligence is a physical phenomenon.**
 
@@ -20,6 +23,11 @@
 * **[Modern Physics Correspondences](PKGF_structural_correspondence_modern_physics_en.md)** — Bridging PKGF with GENERIC, Onsager, and Gauge theories.
 * **[Numerical Analysis (Galerkin)](PKGF_Finite_Dimensional_en.md)** — Finite-dimensional stability and discrete dynamics.
 * **[Comparison with GENERIC/Onsager](PKGF_Generic_Onsager_en.md)** — Energy structure and non-equilibrium analysis.
+
+### 🛠 Implementation & Verification
+* **[Noetics SDK v1.0](SDK/noetics_sdk_spec.md)** — Multi-platform (C, Python, Fortran, WASM) implementation.
+* **[Implementation Report](SDK/SDK_Implementation_Report.md)** — Cross-platform verification and substrate invariance results.
+* **[Empirical Samples](SDK/Python/Sample/)** — Logistic Map and Lorenz System verification scripts.
 
 ### 📚 Resources
 * **[PDF Bibliography](PDF_Bibliography.md)** — Central index of technical source materials.

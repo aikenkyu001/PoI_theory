@@ -62,7 +62,7 @@ double noetics_compute_effective_dimension(const noetics_key* key, double epsilo
 double noetics_compute_entropy(const noetics_key* key);
 
 /* --- Spectral Flow --- */
-int noetics_compute_spectral_flow(const noetics_key* const* key_traj, int n_steps, int* out_sf_value);
+int noetics_compute_spectral_flow(const noetics_op* l0, const noetics_key* const* key_traj, int n_steps, int* out_sf_value);
 
 /* --- Rank Jump / Phase Transition --- */
 int noetics_detect_rank_jump(const noetics_key* const* key_traj, int n_steps);
@@ -77,11 +77,20 @@ double noetics_compute_sector_energy(const noetics_key* key, int sector_id);
 noetics_structure* noetics_export_structure(const noetics_key* key);
 noetics_key*       noetics_import_structure(noetics_context* ctx, const noetics_structure* s);
 
+/**
+ * @brief Get pointer to key's internal data.
+ */
+double*             noetics_key_data_ptr(noetics_key* key);
+const double*       noetics_key_data_ptr_const(const noetics_key* key);
+
 /* --- WASM SDK Extended Exports --- */
 double             wasm_noetics_compute_entropy(const noetics_key* key);
 int                wasm_noetics_detect_rank_jump(const noetics_key* const* key_traj, int n_steps);
 noetics_structure* wasm_noetics_export_structure(const noetics_key* key);
 noetics_key*       wasm_noetics_import_structure(noetics_context* ctx, const noetics_structure* s);
+double*            wasm_noetics_key_data_ptr(noetics_key* key);
+int                wasm_noetics_assign_sector_indices(noetics_key* key, int sector_id, const int* indices, int count);
+double             wasm_noetics_compute_sector_energy(const noetics_key* key, int sector_id);
 
 #ifdef __cplusplus
 }

@@ -2,76 +2,138 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Noetics SDK WASM Demo</title>
+    <title>Noetics SDK v1.0 WASM Verification (Reconstructed)</title>
     <style>
-        body { font-family: monospace; background: #1e1e1e; color: #d4d4d4; padding: 20px; }
-        h1 { color: #569cd6; }
-        .log { background: #252526; border: 1px solid #333; padding: 15px; border-radius: 5px; min-height: 200px; white-space: pre-wrap; }
-        .status { margin-bottom: 10px; font-weight: bold; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e1e; color: #d4d4d4; padding: 20px; line-height: 1.6; }
+        h1 { color: #569cd6; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .section { margin-bottom: 30px; background: #252526; border: 1px solid #333; padding: 20px; border-radius: 8px; }
+        h2 { color: #ce9178; font-size: 1.2em; margin-top: 0; }
+        .log { background: #000; border: 1px solid #444; padding: 10px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9em; max-height: 300px; overflow-y: auto; white-space: pre-wrap; }
+        .status { font-weight: bold; margin-bottom: 15px; padding: 10px; border-radius: 4px; }
         .success { color: #4ec9b0; }
         .error { color: #f44747; }
+        .info { color: #9cdcfe; }
+        .metric { font-weight: bold; color: #b5cea8; }
     </style>
 </head>
 <body>
     <h1>Noetics SDK v1.0 - WASM Verification</h1>
-    <div id="status" class="status">Loading WASM module...</div>
-    <div id="log" class="log"></div>
+    <div id="module-status" class="status">Initializing PKGF Engine...</div>
 
-    <!-- Emscripten generated glue code -->
+    <div class="section">
+        <h2>1. Fundamental PKGF Observables</h2>
+        <div id="log-fundamentals" class="log"></div>
+    </div>
+
+    <div class="section">
+        <h2>2. PoI Analysis (Rank Jump & Entropy)</h2>
+        <div id="log-analysis" class="log"></div>
+    </div>
+
+    <div class="section">
+        <h2>3. Sector Emergence</h2>
+        <div id="log-sectors" class="log"></div>
+    </div>
+
+    <div class="section">
+        <h2>4. Substrate Invariance (Isomorphism)</h2>
+        <div id="log-invariance" class="log"></div>
+    </div>
+
+    <!-- Note: Load glue code from C/ subdirectory -->
     <script src="C/noetics.js"></script>
-    <!-- Our high-level wrapper -->
     <script src="wasm_noetics.js"></script>
 
     <script>
-        const logElement = document.getElementById('log');
-        const statusElement = document.getElementById('status');
-
-        function log(message, type = '') {
-            const span = document.createElement('span');
-            span.className = type;
-            span.textContent = message + '\n';
-            logElement.appendChild(span);
+        function createLogger(id) {
+            const el = document.getElementById(id);
+            return (msg, type = '') => {
+                const span = document.createElement('span');
+                span.className = type;
+                span.textContent = msg + '\n';
+                el.appendChild(span);
+                el.scrollTop = el.scrollHeight;
+            };
         }
 
-        // Initialize Emscripten Module
+        const logF = createLogger('log-fundamentals');
+        const logA = createLogger('log-analysis');
+        const logS = createLogger('log-sectors');
+        const logI = createLogger('log-invariance');
+        const statusEl = document.getElementById('module-status');
+
         NoeticsModule().then(instance => {
-            statusElement.textContent = 'WASM Module Loaded Successfully.';
-            statusElement.className = 'status success';
+            statusEl.textContent = 'PKGF Engine (WASM) Loaded Successfully.';
+            statusEl.className = 'status success';
             
             try {
                 const sdk = new NoeticsSDK(instance);
-                log('--- Noetics SDK initialized ---');
-
-                // 1. Create Context (dim=4, n_sectors=1)
                 const dim = 4;
-                const ctx = sdk.createContext(dim, 1);
-                log(`Context created (dim=${dim})`, 'success');
+                const ctx = sdk.createContext(dim, 2);
 
-                // 2. Create Parallel Key (K)
+                // --- 1. Fundamentals ---
                 const key = sdk.createKey(ctx);
-                log(`Parallel Key (K) initialized at pointer: ${key}`);
-
-                // 3. Compute Initial Energy
-                // For Identity matrix, E = 0.5 * 4 = 2.0
                 const energy = sdk.energy(key);
-                log(`Initial Structural Energy: ${energy.toFixed(4)}`);
-
+                logF(`Parallel Key created at: 0x${key.toString(16)}`, 'info');
+                logF(`Initial Structural Energy: ${energy.toFixed(4)}`, 'metric');
                 if (Math.abs(energy - 2.0) < 1e-6) {
-                    log('[SUCCESS] Energy calculation matches theoretical value (2.0).', 'success');
-                } else {
-                    log('[FAILURE] Energy calculation mismatch.', 'error');
+                    logF('[OK] Identity energy matches theory (2.0).', 'success');
                 }
 
-                log('\nPKGF Geometric Flow Engine is ready for web visualization.');
+                const entropy = sdk.entropy(key);
+                logF(`Initial Entropy (Normalized): ${entropy.toFixed(6)}`, 'metric');
+
+                // --- 2. Analysis ---
+                logA('Simulating structural collapse (Rank Jump)...', 'info');
+                const key2 = sdk.createKey(ctx);
+                const dataPtr = sdk.keyDataPtr(key2);
+                const dataView = new Float64Array(instance.HEAPF64.buffer, dataPtr, dim * dim);
+                dataView.fill(0);
+                dataView[0] = 1.0; // Collapse to Rank 1
+                
+                const jumpIdx = sdk.detectRankJump([key, key2]);
+                logA(`Rank Jump Detection Result: index ${jumpIdx}`, 'metric');
+                if (jumpIdx === 1) {
+                    logA('[OK] Discontinuous rank jump correctly identified.', 'success');
+                }
+
+                // --- 3. Sectors ---
+                logS('Defining semantic sectors...', 'info');
+                sdk.assignSector(key, 0, [0, 1]); // Sector 0
+                sdk.assignSector(key, 1, [2, 3]); // Sector 1
+                
+                const e0 = sdk.sectorEnergy(key, 0);
+                const e1 = sdk.sectorEnergy(key, 1);
+                logS(`Sector 0 Energy: ${e0.toFixed(4)}`, 'metric');
+                logS(`Sector 1 Energy: ${e1.toFixed(4)}`, 'metric');
+                if (Math.abs(e0 - 1.0) < 1e-6 && Math.abs(e1 - 1.0) < 1e-6) {
+                    logS('[OK] Sector emergence correctly quantified.', 'success');
+                }
+
+                // --- 4. Substrate Invariance ---
+                logI('Exporting structure (Canonical Form)...', 'info');
+                const struct = sdk.exportStructure(key);
+                logI(`Structure exported: ${struct.eigenvalues.length} eigenvalues`, 'metric');
+                
+                logI('Importing structure to new substrate context...', 'info');
+                const ctxNew = sdk.createContext(dim, 1);
+                const keyImported = sdk.importStructure(ctxNew, struct);
+                const energyImported = sdk.energy(keyImported);
+                
+                logI(`Imported Structural Energy: ${energyImported.toFixed(4)}`, 'metric');
+                if (Math.abs(energy - energyImported) < 1e-6) {
+                    logI('[OK] Substrate Invariance verified. Isomorphism preserved.', 'success');
+                }
 
             } catch (err) {
-                log(`Error during SDK test: ${err.message}`, 'error');
                 console.error(err);
+                statusEl.textContent = 'Verification Failure: ' + err.message;
+                statusEl.className = 'status error';
             }
         }).catch(err => {
-            statusElement.textContent = 'Failed to load WASM module.';
-            statusElement.className = 'status error';
-            log(err.message, 'error');
+            statusEl.textContent = 'WASM Initialization Failed.';
+            statusEl.className = 'status error';
+            console.error(err);
         });
     </script>
 </body>

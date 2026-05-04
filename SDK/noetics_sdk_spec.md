@@ -230,38 +230,57 @@ C API のエクスポートを拡張：
 
 # **3. Python SDK**
 
-## **3.1 高レベル API**
+## **3.1 高レベル API (Object-Oriented Design)**
 
 ```python
 class Context:
-    def __init__(self, dim: int, n_sectors: int = 1): ...
+    def __init__(self, dim: int, n_sectors: int = 1):
+        self.dim = dim
+        self.n_sectors = n_sectors
+        self.sectors = {} # sector_id -> list of indices
+
+    def assign_sector(self, sector_id: int, indices: list): ...
 
 class Key:
-    def __init__(self, ctx: Context): ...
+    def __init__(self, ctx: Context):
+        self.ctx = ctx
+        self.data = np.eye(ctx.dim, dtype=np.complex128)
+
     def step_conservative(self, omega, dt): ...
     def step_dissipative(self, dop, dt): ...
     def step_unified(self, omega, dop, lam, dt): ...
-    def energy(self): ...
-    def effective_dimension(self): ...
-    def entropy(self): ...
+    def energy(self) -> float: ...
+    def effective_dimension(self, epsilon: float = 1e-3) -> float: ...
+    def entropy(self) -> float: ...
+    def sector_energy(self, sector_id: int) -> float: ...
     def export_structure(self): ...
     @staticmethod
     def import_structure(ctx, structure): ...
 
-def detect_rank_jump(keys): ...
-def detect_phase_transition(d_eff_series): ...
+# Time-series analysis
+def compute_spectral_flow(l0: np.ndarray, keys: list) -> int: ...
+def detect_rank_jump(keys: list, epsilon: float = 1e-3) -> list: ...
+def detect_phase_transition(d_eff_series: list) -> list: ...
 ```
 
 ---
 
 # **4. Fortran SDK**
 
-C API の薄いラッパとして追加：
+## **4.1 ネイティブ実装仕様**
 
-- `noetics_compute_entropy`
-- `noetics_detect_rank_jump`
-- `noetics_export_structure`
-- `noetics_import_structure`
+C API のラッパではなく、Fortran 90 以降の機能を活用した完全ネイティブ実装とする。
+
+- **モジュール名**: `noetics_mod`
+- **データ型**: `noetics_context`, `noetics_key`, `noetics_op`, `noetics_structure`
+- **主要関数**:
+    - `noetics_init_context(ctx, dim, n_sectors)`
+    - `noetics_init_key(key, ctx)`
+    - `noetics_step_unified(key, omega, dop, lambda, dt)`
+    - `noetics_compute_spectral_flow(l0, keys, n_steps)`
+    - `noetics_detect_rank_jump(keys, n_steps, eps)`
+    - `noetics_export_structure(key, struct)`
+    - `noetics_import_structure(key, ctx, struct)`
 
 ---
 

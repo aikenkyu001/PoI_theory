@@ -3,6 +3,12 @@
 #include <string.h>
 #include <math.h>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#else
+#define EMSCRIPTEN_KEEPALIVE
+#endif
+
 /* --- Internal Structures --- */
 
 struct noetics_context {
@@ -111,6 +117,7 @@ static int jacobi_eigen(int n, double* A, double* eigenvalues, double* eigenvect
 
 /* --- Context Lifecycle --- */
 
+EMSCRIPTEN_KEEPALIVE
 noetics_context* noetics_create_context(int dim, int n_sectors) {
     noetics_context* ctx = (noetics_context*)malloc(sizeof(noetics_context));
     ctx->dim = dim;
@@ -132,6 +139,7 @@ void noetics_destroy_context(noetics_context* ctx) {
 
 /* --- Key Lifecycle --- */
 
+EMSCRIPTEN_KEEPALIVE
 noetics_key* noetics_key_create(noetics_context* ctx) {
     if (!ctx) return NULL;
     noetics_key* key = (noetics_key*)malloc(sizeof(noetics_key));
@@ -173,6 +181,7 @@ int noetics_step_dissipative(noetics_key* key, const noetics_op* dop, double dt)
     return 0;
 }
 
+EMSCRIPTEN_KEEPALIVE
 int noetics_step_unified(noetics_key* key, const noetics_op* omega, const noetics_op* dop, double lambda, double dt) {
     int n = key->ctx->dim;
     double* comm = (double*)malloc(sizeof(double) * n * n);
@@ -189,6 +198,7 @@ int noetics_step_unified(noetics_key* key, const noetics_op* omega, const noetic
 
 /* --- Observables --- */
 
+EMSCRIPTEN_KEEPALIVE
 double noetics_compute_energy(const noetics_key* key) {
     int n = key->ctx->dim;
     double energy = 0;
@@ -240,11 +250,59 @@ double noetics_compute_entropy(const noetics_key* key) {
     return h;
 }
 
+/* --- Internal Utilities --- */
+
+static int compare_doubles(const void* a, const void* b) {
+    double arg1 = *(const double*)a;
+    double arg2 = *(const double*)b;
+    if (arg1 < arg2) return -1;
+    if (arg1 > arg2) return 1;
+    return 0;
+}
+
+static void get_sorted_evals(int n, const double* l0_data, const double* k_data, double* out_evals) {
+    double* M = (double*)malloc(sizeof(double) * n * n);
+    double* evecs = (double*)malloc(sizeof(double) * n * n);
+    for (int i = 0; i < n * n; i++) {
+        M[i] = l0_data[i] + k_data[i];
+    }
+    jacobi_eigen(n, M, out_evals, evecs);
+    qsort(out_evals, n, sizeof(double), compare_doubles);
+    free(M);
+    free(evecs);
+}
+
 /* --- Spectral Flow --- */
 
-int noetics_compute_spectral_flow(const noetics_key* const* key_traj, int n_steps, int* out_sf_value) {
-    (void)key_traj; (void)n_steps;
-    if (out_sf_value) *out_sf_value = 0;
+int noetics_compute_spectral_flow(const noetics_op* l0, const noetics_key* const* key_traj, int n_steps, int* out_sf_value) {
+    if (!l0 || !key_traj || n_steps < 2) {
+        if (out_sf_value) *out_sf_value = 0;
+        return -1;
+    }
+    
+    int n = l0->dim;
+    double* prev_evals = (double*)malloc(sizeof(double) * n);
+    double* curr_evals = (double*)malloc(sizeof(double) * n);
+    int total_flow = 0;
+    
+    get_sorted_evals(n, l0->data, key_traj[0]->data, prev_evals);
+    
+    for (int i = 1; i < n_steps; i++) {
+        get_sorted_evals(n, l0->data, key_traj[i]->data, curr_evals);
+        for (int j = 0; j < n; j++) {
+            if (prev_evals[j] < 0 && curr_evals[j] >= 0) {
+                total_flow++;
+            } else if (prev_evals[j] >= 0 && curr_evals[j] < 0) {
+                total_flow--;
+            }
+        }
+        memcpy(prev_evals, curr_evals, sizeof(double) * n);
+    }
+    
+    if (out_sf_value) *out_sf_value = total_flow;
+    
+    free(prev_evals);
+    free(curr_evals);
     return 0;
 }
 
@@ -359,20 +417,47 @@ noetics_key* noetics_import_structure(noetics_context* ctx, const noetics_struct
     return key;
 }
 
+double* noetics_key_data_ptr(noetics_key* key) {
+    return key ? key->data : NULL;
+}
+
+const double* noetics_key_data_ptr_const(const noetics_key* key) {
+    return key ? key->data : NULL;
+}
+
 /* --- WASM SDK Extended Exports --- */
 
+EMSCRIPTEN_KEEPALIVE
 double wasm_noetics_compute_entropy(const noetics_key* key) {
     return noetics_compute_entropy(key);
 }
 
+EMSCRIPTEN_KEEPALIVE
 int wasm_noetics_detect_rank_jump(const noetics_key* const* key_traj, int n_steps) {
     return noetics_detect_rank_jump(key_traj, n_steps);
 }
 
+EMSCRIPTEN_KEEPALIVE
 noetics_structure* wasm_noetics_export_structure(const noetics_key* key) {
     return noetics_export_structure(key);
 }
 
+EMSCRIPTEN_KEEPALIVE
 noetics_key* wasm_noetics_import_structure(noetics_context* ctx, const noetics_structure* s) {
     return noetics_import_structure(ctx, s);
+}
+
+EMSCRIPTEN_KEEPALIVE
+double* wasm_noetics_key_data_ptr(noetics_key* key) {
+    return noetics_key_data_ptr(key);
+}
+
+EMSCRIPTEN_KEEPALIVE
+int wasm_noetics_assign_sector_indices(noetics_key* key, int sector_id, const int* indices, int count) {
+    return noetics_assign_sector_indices(key, sector_id, indices, count);
+}
+
+EMSCRIPTEN_KEEPALIVE
+double wasm_noetics_compute_sector_energy(const noetics_key* key, int sector_id) {
+    return noetics_compute_sector_energy(key, sector_id);
 }

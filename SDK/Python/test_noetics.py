@@ -128,14 +128,78 @@ def test_poi_entropy_dynamics():
     assert h_after >= h_before or abs(h_after - h_before) < 1e-5, f"Entropy decreased in D-phase! {h_before} -> {h_after}"
     print(f"  [SUCCESS] Entropy smearing in D-phase: {h_before:.4f} -> {h_after:.4f}")
 
+def test_pkgf_conservative_flow():
+    print("Testing PKGF Conservative Flow (C-phase)...")
+    dim = 4
+    ctx = noetics.Context(dim)
+    key = noetics.Key(ctx)
+    initial_energy = key.energy()
+    
+    # Skew-symmetric Omega to ensure energy conservation
+    omega = np.array([[0, 1, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 2], [0, 0, -2, 0]], dtype=np.complex128)
+    
+    key.step_conservative(omega, 0.1)
+    new_energy = key.energy()
+    
+    # Energy should be conserved in C-phase (within numerical precision)
+    assert abs(new_energy - initial_energy) < 1e-10, f"Energy not conserved! {initial_energy} -> {new_energy}"
+    print("  [SUCCESS] Energy is conserved in conservative flow.")
+
+def test_pkgf_unified_flow():
+    print("Testing PKGF Unified Flow (U-phase)...")
+    dim = 4
+    ctx = noetics.Context(dim)
+    key = noetics.Key(ctx)
+    
+    omega = np.eye(dim) * 1j
+    dop = np.eye(dim)
+    
+    key.step_unified(omega, dop, lam=0.1, dt=0.01)
+    # Just check if it runs without error and data is still complex
+    assert key.data.shape == (dim, dim)
+    print("  [SUCCESS] Unified flow executed.")
+
+def test_poi_spectral_flow():
+    print("Testing PoI Spectral Flow...")
+    dim = 2
+    l0 = np.array([[-1, 0], [0, -1]], dtype=np.complex128)
+    ctx = noetics.Context(dim)
+    
+    k0 = noetics.Key(ctx)
+    k0.data = np.zeros((dim, dim), dtype=np.complex128)
+    
+    k1 = noetics.Key(ctx)
+    k1.data = np.diag([2.0, 0.0]).astype(np.complex128)
+    
+    k2 = noetics.Key(ctx)
+    k2.data = np.diag([2.0, 2.0]).astype(np.complex128)
+    
+    sf = noetics.compute_spectral_flow(l0, [k0, k1, k2])
+    assert sf == 2, f"Spectral flow incorrect! Expected 2, got {sf}"
+    print("  [SUCCESS] Spectral flow correctly calculated.")
+
+def test_poi_phase_transition():
+    print("Testing PoI Phase Transition Detection...")
+    d_eff_series = [4, 4, 4, 1, 1, 1, 3, 3]
+    # Using a fixed threshold for reliability in test
+    transitions = noetics.detect_phase_transition(d_eff_series, threshold=1.5)
+    assert 3 in transitions and 6 in transitions, f"Phase transitions not detected! Found {transitions}"
+    print("  [SUCCESS] Phase transitions correctly detected.")
+
 if __name__ == "__main__":
     try:
         test_pkgf_energy_decay()
+        test_pkgf_conservative_flow()
+        test_pkgf_unified_flow()
         test_poi_entropy_dynamics()
         test_poi_rank_jump()
+        test_poi_spectral_flow()
+        test_poi_phase_transition()
         test_substrate_invariance()
         test_sector_energy()
         print("\nAll SDK v1.0 foundational tests PASSED.")
     except Exception as e:
         print(f"\n[FAILURE] {e}")
+        import traceback
+        traceback.print_exc()
         exit(1)

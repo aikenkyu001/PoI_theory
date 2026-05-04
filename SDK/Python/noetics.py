@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.linalg import expm
 
 class Context:
     def __init__(self, dim: int, n_sectors: int = 1):
@@ -18,21 +19,27 @@ class Key:
         self.data = np.eye(self.dim, dtype=np.complex128)
 
     def step_conservative(self, omega: np.ndarray, dt: float):
-        # dot K = [Omega, K]
-        comm = omega @ self.data - self.data @ omega
-        self.data += comm * dt
+        # dot K = [Omega, K] => K(t+dt) = exp(Omega*dt) K(t) exp(-Omega*dt)
+        e_om = expm(omega * dt)
+        e_om_inv = expm(-omega * dt)
+        self.data = e_om @ self.data @ e_om_inv
 
     def step_dissipative(self, dop: np.ndarray, dt: float):
-        # dot K = -D(K)
-        # Assuming dop is an operator matrix acting on K
-        d_effect = dop @ self.data
-        self.data -= d_effect * dt
+        # dot K = -D(K) => K(t+dt) = exp(-D*dt) K(t)
+        e_dop = expm(-dop * dt)
+        self.data = e_dop @ self.data
 
     def step_unified(self, omega: np.ndarray, dop: np.ndarray, lam: float, dt: float):
         # dot K = [Omega, K] - lambda * D(K)
-        comm = omega @ self.data - self.data @ omega
-        d_effect = dop @ self.data
-        self.data += (comm - lam * d_effect) * dt
+        # Using Strang splitting for 2nd order accuracy if possible, 
+        # but Lie-Trotter is fine for now.
+        e_om = expm(omega * dt)
+        e_om_inv = expm(-omega * dt)
+        e_dop = expm(-lam * dop * dt)
+        
+        # Apply conservative flow then dissipative flow
+        self.data = e_om @ self.data @ e_om_inv
+        self.data = e_dop @ self.data
 
     def energy(self) -> float:
         # E = 0.5 * ||K||_F^2
@@ -75,6 +82,31 @@ class Key:
         key.data = evecs @ np.diag(evals) @ np.linalg.inv(evecs)
         return key
 
+def compute_spectral_flow(l0: np.ndarray, keys: list) -> int:
+    """
+    Compute spectral flow of L(t) = L0 + K(t).
+    Tracks the net number of eigenvalues that cross zero from negative to positive.
+    """
+    def get_evals(k_data):
+        m = l0 + k_data
+        evals = np.linalg.eigvals(m)
+        return np.sort(np.real(evals))
+
+    total_flow = 0
+    prev_evals = get_evals(keys[0].data)
+    
+    for i in range(1, len(keys)):
+        curr_evals = get_evals(keys[i].data)
+        # Count eigenvalues that crossed from negative to positive (+) or vice versa (-)
+        for p, c in zip(prev_evals, curr_evals):
+            if p < 0 and c >= 0:
+                total_flow += 1
+            elif p >= 0 and c < 0:
+                total_flow -= 1
+        prev_evals = curr_evals
+        
+    return total_flow
+
 def detect_rank_jump(keys: list, epsilon: float = 1e-3) -> list:
     ranks = [k.effective_dimension(epsilon) for k in keys]
     jumps = []
@@ -83,9 +115,16 @@ def detect_rank_jump(keys: list, epsilon: float = 1e-3) -> list:
             jumps.append(i)
     return jumps
 
-def detect_phase_transition(d_eff_series: list) -> list:
+def detect_phase_transition(d_eff_series: list, threshold: float = None) -> list:
     # Detect sharp changes in d_eff
     diff = np.abs(np.diff(d_eff_series))
     if len(diff) == 0: return []
-    threshold = np.mean(diff) + 2 * np.std(diff)
-    return [i+1 for i, val in enumerate(diff) if val > threshold]
+    
+    if threshold is None:
+        std = np.std(diff)
+        if std < 1e-6:
+            threshold = 0.5 # Default for discrete jumps
+        else:
+            threshold = np.mean(diff) + 1.5 * std # Relaxed from 2.0
+            
+    return [i+1 for i, val in enumerate(diff) if val >= threshold]

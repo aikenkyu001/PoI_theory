@@ -173,6 +173,83 @@ contains
   end subroutine noetics_import_structure
 
   ! --- Internal Math ---
+  ! --- Spectral Flow ---
+  function noetics_compute_spectral_flow(l0, keys, n_steps) result(sf)
+    type(noetics_op), intent(in) :: l0
+    type(noetics_key), intent(in) :: keys(n_steps)
+    integer, intent(in) :: n_steps
+    integer :: sf
+    real(dp) :: prev_evals(l0%dim), curr_evals(l0%dim)
+    real(dp) :: temp_evecs(l0%dim, l0%dim)
+    integer :: i, j
+
+    sf = 0
+    if (n_steps < 2) return
+
+    ! Get initial eigenvalues
+    call jacobi_eigen(l0%dim, l0%data + keys(1)%data, prev_evals, temp_evecs)
+    call shell_sort(prev_evals)
+
+    do i = 2, n_steps
+       call jacobi_eigen(l0%dim, l0%data + keys(i)%data, curr_evals, temp_evecs)
+       call shell_sort(curr_evals)
+       do j = 1, l0%dim
+          if (prev_evals(j) < 0.0_dp .and. curr_evals(j) >= 0.0_dp) then
+             sf = sf + 1
+          else if (prev_evals(j) >= 0.0_dp .and. curr_evals(j) < 0.0_dp) then
+             sf = sf - 1
+          end if
+       end do
+       prev_evals = curr_evals
+    end do
+  end function noetics_compute_spectral_flow
+
+  ! --- Rank Jump Detection ---
+  function noetics_detect_rank_jump(keys, n_steps, eps) result(jump_idx)
+    type(noetics_key), intent(in) :: keys(n_steps)
+    integer, intent(in) :: n_steps
+    real(dp), intent(in) :: eps
+    integer :: jump_idx
+    real(dp) :: prev_rank, curr_rank
+    integer :: i
+
+    jump_idx = -1
+    if (n_steps < 2) return
+
+    prev_rank = noetics_compute_d_eff(keys(1), eps)
+    do i = 2, n_steps
+       curr_rank = noetics_compute_d_eff(keys(i), eps)
+       if (abs(curr_rank - prev_rank) > 0.5_dp) then
+          jump_idx = i
+          return
+       end if
+       prev_rank = curr_rank
+    end do
+  end function noetics_detect_rank_jump
+
+  ! --- Internal Utilities ---
+  subroutine shell_sort(a)
+    real(dp), intent(inout) :: a(:)
+    integer :: n, i, j, h
+    real(dp) :: v
+    n = size(a)
+    h = 1
+    do while (h <= n/3); h = 3*h + 1; end do
+    do while (h >= 1)
+       do i = h + 1, n
+          v = a(i)
+          j = i
+          do while (j > h)
+             if (a(j-h) <= v) exit
+             a(j) = a(j-h)
+             j = j - h
+          end do
+          a(j) = v
+       end do
+       h = h / 3
+    end do
+  end subroutine shell_sort
+
   subroutine jacobi_eigen(n, A_in, evals, evecs)
     integer, intent(in) :: n
     real(dp), intent(in) :: A_in(n,n)

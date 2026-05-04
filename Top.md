@@ -1,6 +1,6 @@
 # Noetics - Physics of Intelligence
 
-**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)
+**DOI:** [https://doi.org/10.5281/zenodo.20018571](https://doi.org/10.5281/zenodo.20018571)
 
 **Noetics** is a foundational scientific discipline
  that investigates the intrinsic principles, dynamics, and structures of intelligence by means of rigorous mathematical formalisms. It aims to identify and axiomatize the universal laws of intelligent behavior—**symmetry, dissipation, integration, and topological decision**—independent of any physical substrate or implementation. Noetics stands as a new fundamental science parallel to physics, grounded in mathematics yet distinct from both mathematics and physics in its object of study.

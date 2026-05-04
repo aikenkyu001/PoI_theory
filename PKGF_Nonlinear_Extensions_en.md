@@ -3,7 +3,7 @@
 
 **Author: Fumio Miyata**  
 **Date: April 2026**  
-**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)  
+**DOI:** [https://doi.org/10.5281/zenodo.20018571](https://doi.org/10.5281/zenodo.20018571)  
 **Repository:** [https://github.com/aikenkyu001/PoI_theory](https://github.com/aikenkyu001/PoI_theory)  
 
 **Related Work:**  

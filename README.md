@@ -1,6 +1,6 @@
 # Physics of Intelligence (PoI) & Parallel Key Geometric Flow (PKGF)
 
-**DOI:** [https://doi.org/10.5281/zenodo.19945121](https://doi.org/10.5281/zenodo.19945121)  
+**DOI:** [https://doi.org/10.5281/zenodo.20018571](https://doi.org/10.5281/zenodo.20018571)  
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 This repository contains the foundational manuscripts, mathematical proofs, and empirical verification results for the **Physics of Intelligence (PoI)** framework and its core mathematical engine, the **Parallel Key Geometric Flow (PKGF)**.
@@ -69,8 +69,8 @@ If you use this theory or the associated data in your research, please cite it a
   year         = {2026},
   month        = {April},
   note         = {Consolidated Final Edition},
-  doi          = {10.5281/zenodo.19659376},
-  url          = {https://doi.org/10.5281/zenodo.19945121}
+  doi          = {10.5281/zenodo.20018571},
+  url          = {https://doi.org/10.5281/zenodo.20018571}
 }
 ```
 
